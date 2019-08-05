@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCityDonationTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCityDonationTable extends Migration
      */
     public function up()
     {
-        Schema::create('city_donation', function (Blueprint $table) {
-
+        Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('city_id')->unsigned();
-            $table->integer('donation_id')->unsigned();
+            $table->string('title');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -29,7 +28,6 @@ class CreateCityDonationTable extends Migration
      */
     public function down()
     {
-
-        Schema::dropIfExists('city_donation');
+        Schema::dropIfExists('notifications');
     }
 }
