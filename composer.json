@@ -35,6 +35,12 @@
         "psr-4": {
             "App\\": "app/"
         },
+
+        "files": [
+                "App/mohsen/helper.php"
+            ]
+
+            ,
         "classmap": [
             "database/seeds",
             "database/factories"

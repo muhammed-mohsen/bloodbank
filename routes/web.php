@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('test', function () {
+
+    $posts = App\Post::paginate(1);
+    $response = [
+        'status' => '1',
+        'message' => 'successs',
+        'data' => $posts,
+
+
+    ];
+    return $response;
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\City;
+use App\Post;
 use App\Blood_type;
 use App\Notification;
 use Illuminate\Notifications\Notifiable;
@@ -52,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsToManny(Blood_type::class);
     }
+    //     public function posts()
+    //         {
+    //          return $this->hasManny(Post::class);
+    //         }
+    // }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBloodTypesTable extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateBloodTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('blood_types', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('client_id');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('fb');
+            $table->string('wa');
+            $table->string('yt');
+            $table->string('tw');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ class CreateBloodTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blood_types');
+        Schema::dropIfExists('settings');
     }
 }
