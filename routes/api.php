@@ -22,8 +22,19 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function () {
     Route::get('governorates', 'MainController@governorates');
     Route::get('cities', 'MainController@cities');
     Route::post('register', 'AuthController@register');
+
     Route::post('login', 'AuthController@login');
 
+    // Route::Post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+
+    // Route::Post('password/reset', 'ResetPasswordController@reset');
+    Route::post('resetpassword', 'AuthController@resetPassword');
+
+    // Route::get('categorypsots', 'MainController@categorypsots');
+    Route::get('filterposts', 'MainController@filterposts');
+
+
+    Route::post('verifyclient', 'AuthController@verifyclient');
     Route::group(['middleware' => 'auth:api',], function () {
 
         Route::get('posts', 'MainController@posts');

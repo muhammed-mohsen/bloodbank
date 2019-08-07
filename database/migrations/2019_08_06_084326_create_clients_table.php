@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->dateTime("b_d");
             $table->string('phone');
-            $table->enum('blood_type', ['O-', 'O+', 'B-', 'B+', 'A-', 'A+', 'AB-', 'AB+']);
+            $table->string('blood_type');
             $table->string('city_id');
             $table->dateTime('ld_donation');
             $table->integer('pin_code')->nullable();

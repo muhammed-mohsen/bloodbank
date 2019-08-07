@@ -56,7 +56,7 @@ class AuthController extends Authenticatable
         }
 
         $client = Client::where('phone', $request->phone)->first();
-        //return auth()->guard('api')->validate($request->all());
+        // return auth()->guard('api')->validate($request->all());
 
         if ($client) {
 
@@ -89,5 +89,49 @@ class AuthController extends Authenticatable
 
         //     ]
         // );
+    }
+    public function resetPassword(Request $request)
+    {
+        $validator = validator()->make($request->all(), [
+            'phone' => 'required|min:11|max:11',
+        ]);
+
+        $client = Client::where('phone', $request->phone)->first();
+
+        if ($client) {
+
+            $pin_code = rand(1111, 9999);
+
+            $client->pin_code = $pin_code;
+
+            $client->save();
+            //send email
+
+            return responsejson(1, 'successs', [
+                'pin_code' => $client->pin_code, 'client' => $client,
+            ]);
+        }
+    }
+    public function verifyclient(Request $request)
+    {
+        $validator = validator()->make($request->all(), [
+            'pin_code' => 'required|min:11|max:11',
+            'password' => 'required|confirmed',
+
+        ]);
+
+
+
+        $client = Client::where('pin_code', $request->pin_code)->first();
+
+        if ($client) {
+
+            $client->password = bcrypt($request->password);
+            $client->save();
+
+            return responsejson(1, 'تم تغيير الباسورد بنجاح');
+        } else {
+            responsejson(1, $validator->errors->first(), $validator->errors());
+        }
     }
 }

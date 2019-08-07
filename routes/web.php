@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/filter', function () {
+    $collection = collect([19, 21, 29, 46]);
+
+    $filtered = $collection->filter(function ($value, $key) {
+        return $value == 19;
+    });
+
+    dd($filtered->all());
+});
+
 Route::get('test', function () {
 
     $posts = App\Post::paginate(1);
